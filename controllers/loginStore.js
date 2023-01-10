@@ -6,7 +6,12 @@ module.exports = (req, res) => {
   User.findOne({ email }, async (err, user) => {
     if (user) {
       const validPassword = await bcrypt.compare(password, user.password);
-      validPassword ? res.redirect("/") : res.redirect("/log");
+      if (validPassword) {
+        req.session.userId = user._id;
+        res.redirect("/");
+      } else {
+        res.redirect("/log");
+      }
     } else {
       res.redirect("/log");
     }

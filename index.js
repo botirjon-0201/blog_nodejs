@@ -2,6 +2,8 @@ const express = require("express");
 const expressEdge = require("express-edge");
 const mongoose = require("mongoose");
 const fileUpload = require("express-fileupload");
+const expressSession = require("express-session");
+const mongoStore = require("connect-mongo");
 
 const homePageController = require("./controllers/homePage");
 const getPostsController = require("./controllers/getPosts");
@@ -12,15 +14,22 @@ const userStoreController = require("./controllers/userStore");
 const loginController = require("./controllers/login");
 const loginStoreController = require("./controllers/loginStore");
 
-const storePostMiddleware = require("./middlewares/storePost");
-
 const app = express();
 
-mongoose.set("strictQuery", false);
-mongoose.connect(
-  "mongodb+srv://Botirjon:4pNNd6dLX0qb8JFP@cluster0.a2mle2z.mongodb.net/node-blog"
-);
+const storePostMiddleware = require("./middlewares/storePost");
 
+const MongoUrl =
+  "mongodb+srv://Botirjon:4pNNd6dLX0qb8JFP@cluster0.a2mle2z.mongodb.net/node-blog";
+
+mongoose.set("strictQuery", false);
+mongoose.connect(MongoUrl);
+
+app.use(
+  expressSession({
+    secret: "sam",
+    store: mongoStore.create({ mongoUrl: MongoUrl }),
+  })
+);
 app.use(fileUpload());
 app.use(express.static("public"));
 app.use(expressEdge.engine);
