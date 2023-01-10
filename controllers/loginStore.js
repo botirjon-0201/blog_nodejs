@@ -10,10 +10,10 @@ module.exports = (req, res) => {
         req.session.userId = user._id;
         res.redirect("/");
       } else {
-        res.redirect("/log");
+        res.redirect("/login");
       }
     } else {
-      res.redirect("/log");
+      return res.redirect("/login");
     }
   });
 };
