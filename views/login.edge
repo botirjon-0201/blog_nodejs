@@ -16,6 +16,13 @@
 <div class="container">
     <div class="row">
       <div class="col-md-8 offset-md-2">
+        @if(errors.length > 0)
+          <ul class="list-group my-3">
+            @each(err in errors)
+              <li class="list-group-item text-danger">{{err}}</li>
+            @endeach
+          </ul>
+        @endif
         <form action="/auth/log" method="POST" >
           <div class="form-floating">
             <input type="email" class="form-control" name="email" placeholder="Enter Your Email...">

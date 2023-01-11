@@ -14,15 +14,10 @@
     </div>
 </header>
 
-
 <div class="container">
     <div class="row">
       <div class="col-md-8 offset-md-2">
         <form action="/posts/create" method="POST" enctype="multipart/form-data" >
-          <div class="form-floating">
-            <input type="text" class="form-control" name="username" placeholder="Enter Your Title...">
-            <label>Username</label>
-          </div>
           <div class="form-floating">
             <input type="text" class="form-control" name="title" placeholder="Enter Your Title...">
             <label>Title</label>
@@ -31,13 +26,9 @@
             <input type="text" class="form-control" name="description" placeholder="Enter Your Description...">
             <label>Description</label>
           </div>
-          <div class="form-floating">
+          <div class="form-floating my-3">
             <textarea id="content" name="content" class="form-control" placeholder="Enter Your Content..." style="height: 20rem"></textarea>
-            <label>Content</label>
-        </div>
-          {{--  <div class="form-floating my-3">  --}}
-            {{--  <textarea id="content" name="content" class="form-control" placeholder="Enter Your Content..." style="height: 20rem"></textarea>  --}}
-          {{--  </div>  --}}
+          </div>
           <div class="form-floating mt-3">
             <input class="form-control" name="image" type="file" id="formFile">
           </div>
@@ -49,4 +40,22 @@
     </div>
   </div>
 
+@endsection
+
+@section('styles')
+<!-- include libraries(jQuery, bootstrap) -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+@endsection
+
+@section("scripts")
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script>
+  $('#content').summernote({
+    placeholder: "Content"
+  });
+</script>
 @endsection

@@ -61,6 +61,7 @@ app.post("/auth/reg", userStoreController);
 app.get("/login", redirectIfAuth, loginController);
 app.post("/auth/log", loginStoreController);
 app.get("/logout", authMiddleware, logoutController);
+app.use((req, res)=>res.render('not_found'))
 
 app.listen(5000, () => {
   console.log("Server has been started on Port 5000...");
