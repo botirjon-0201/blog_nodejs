@@ -42,7 +42,7 @@ app.use(connectFlash());
 
 app.set("views", `${__dirname}/views`);
 
-app.use("*", (req, res, next) => {
+app.use((req, res, next) => {
   app.locals.auth = req.session.userId;
   next();
 });
@@ -61,7 +61,7 @@ app.post("/auth/reg", userStoreController);
 app.get("/login", redirectIfAuth, loginController);
 app.post("/auth/log", loginStoreController);
 app.get("/logout", authMiddleware, logoutController);
-app.use((req, res)=>res.render('not_found'))
+app.use((req, res) => res.render("not_found"));
 
 app.listen(5000, () => {
   console.log("Server has been started on Port 5000...");
