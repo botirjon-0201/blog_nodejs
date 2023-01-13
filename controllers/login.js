@@ -4,3 +4,4 @@ module.exports = (req, res) => {
     data: req.flash("data")[0],
   });
 };
+// Loginni ko'rish kerak

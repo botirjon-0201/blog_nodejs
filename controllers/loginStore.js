@@ -1,6 +1,6 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
-
+// Ko'rish kerak
 module.exports = (req, res) => {
   User.create(req.body, (err, user) => {
     if (err) {
